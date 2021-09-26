@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 
-const Cadastro = () => {
+const Cadastro = ({ autenticated }) => {
   const history = useHistory();
 
   const yupSchema = yup.object().shape({
@@ -64,6 +64,10 @@ const Cadastro = () => {
         toast.error("Erro ao criar a conta. Verifique os campos!!")
       );
   };
+
+  if (autenticated) {
+    return history.push("/dashboard");
+  }
 
   return (
     <>

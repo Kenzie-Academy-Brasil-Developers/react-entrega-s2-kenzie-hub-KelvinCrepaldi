@@ -1,12 +1,13 @@
 import { TextField, Button } from "@material-ui/core";
 import { ContainerCadastro } from "./styled";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import api from "../../services/api";
 
-const Login = () => {
+const Login = ({ autenticated, setAutenticated }) => {
   const history = useHistory();
 
   const yupSchema = yup.object().shape({
@@ -26,8 +27,23 @@ const Login = () => {
   });
 
   const submitForm = (data) => {
-    console.log(data);
+    api
+      .post("/sessions", data)
+      .then((response) => {
+        const { token } = response.data;
+        toast.success("Bem vindo");
+        localStorage.setItem("@kenziehub:token", JSON.stringify(token));
+        setAutenticated(true);
+        return history.push("/dashboard");
+      })
+      .catch((err) => {
+        toast.error("Email ou senha não foram encontrados.");
+      });
   };
+
+  if (autenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>

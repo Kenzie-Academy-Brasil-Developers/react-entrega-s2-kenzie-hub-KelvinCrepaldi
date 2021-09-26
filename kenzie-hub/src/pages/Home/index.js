@@ -2,8 +2,12 @@ import { Container, ButtonContainer } from "./styled";
 import image from "../../assets/22.png";
 import { useHistory } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ autenticated }) => {
   const history = useHistory();
+
+  if (autenticated) {
+    history.push("/dashboard");
+  }
 
   const handleLoginPage = () => {
     history.push("/login/");
