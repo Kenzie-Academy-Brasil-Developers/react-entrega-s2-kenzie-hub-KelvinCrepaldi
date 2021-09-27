@@ -5,6 +5,7 @@ export const ContainerCadastro = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 
   h1 {
     font-size: 60px;

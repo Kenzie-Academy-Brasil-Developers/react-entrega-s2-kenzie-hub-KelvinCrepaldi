@@ -22,7 +22,11 @@ const Cadastro = ({ autenticated }) => {
     password: yup
       .string()
       .min(6, "Minimo de 6 caracteres")
-      .required("Senha obrigatoria"),
+      .required("Senha obrigatoria")
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Necessário ter letras, números e ao menos um símbolo"
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Senhas diferentes")
@@ -60,9 +64,7 @@ const Cadastro = ({ autenticated }) => {
         toast.success("Sucesso ao criar a conta!");
         return history.push("/login");
       })
-      .catch((err) =>
-        toast.error("Erro ao criar a conta. Verifique os campos!!")
-      );
+      .catch((err) => toast.error("Algo deu errado, verifique os campos."));
   };
 
   if (autenticated) {
@@ -131,16 +133,6 @@ const Cadastro = ({ autenticated }) => {
             error={!!errors.bio}
             helperText={errors.bio?.message}
           />
-
-          {/* <TextField
-            className="inputField"
-            label="Módulo"
-            margin="normal"
-            variant="filled"
-            {...register("course_module")}
-            error={!!errors.course_module}
-            helperText={errors.course_module?.message}
-          /> */}
 
           <select className="select" {...register("course_module")}>
             <option value="Primeiro módulo (Introdução ao Frontend)">

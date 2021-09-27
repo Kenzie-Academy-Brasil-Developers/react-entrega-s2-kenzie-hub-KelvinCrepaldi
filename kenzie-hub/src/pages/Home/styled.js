@@ -6,12 +6,11 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
 
   h1 {
     width: 100%;
-    font-size: 60px;
-    padding: 30px;
+    font-size: 80px;
+    padding: 60px;
   }
 
   img {
