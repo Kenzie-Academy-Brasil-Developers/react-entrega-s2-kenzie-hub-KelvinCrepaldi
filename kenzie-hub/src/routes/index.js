@@ -32,7 +32,10 @@ const Routes = () => {
           <Cadastro autenticated={autenticated} />
         </Route>
         <Route path="/dashboard">
-          <DashBoard autenticated={autenticated} />
+          <DashBoard
+            autenticated={autenticated}
+            setAutenticated={setAutenticated}
+          />
         </Route>
       </Switch>
     </>

@@ -27,4 +27,10 @@ export const ContainerCadastro = styled.div`
     width: 300px;
     margin: 5px;
   }
+
+  .select {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+  }
 `;

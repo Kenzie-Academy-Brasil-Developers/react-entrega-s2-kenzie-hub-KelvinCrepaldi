@@ -30,9 +30,9 @@ const Login = ({ autenticated, setAutenticated }) => {
     api
       .post("/sessions", data)
       .then((response) => {
-        const { token } = response.data;
-        toast.success("Bem vindo");
+        const { token, user } = response.data;
         localStorage.setItem("@kenziehub:token", JSON.stringify(token));
+        localStorage.setItem("@kenziehub:user", JSON.stringify(user));
         setAutenticated(true);
         return history.push("/dashboard");
       })

@@ -132,7 +132,7 @@ const Cadastro = ({ autenticated }) => {
             helperText={errors.bio?.message}
           />
 
-          <TextField
+          {/* <TextField
             className="inputField"
             label="Módulo"
             margin="normal"
@@ -140,7 +140,22 @@ const Cadastro = ({ autenticated }) => {
             {...register("course_module")}
             error={!!errors.course_module}
             helperText={errors.course_module?.message}
-          />
+          /> */}
+
+          <select className="select" {...register("course_module")}>
+            <option value="Primeiro módulo (Introdução ao Frontend)">
+              Primeiro módulo (Introdução ao Frontend)
+            </option>
+            <option value="Segundo módulo (Frontend Avançado)">
+              Segundo módulo (Frontend Avançado)
+            </option>
+            <option value="Terceiro módulo (Introdução ao Backend)">
+              Terceiro módulo (Introdução ao Backend)
+            </option>
+            <option value="Quarto módulo (Backend Avançado)">
+              Quarto módulo (Backend Avançado)
+            </option>
+          </select>
 
           <Button type="submit" variant="outlined">
             Criar conta
